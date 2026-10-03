@@ -227,7 +227,7 @@ export function Hero() {
         </h1>
 
         <p className="mt-6 max-w-[560px] text-[17px] leading-relaxed text-ink-2 animate-rise sm:text-[19px]" style={{ animationDelay: '420ms' }}>
-          Mira puts a 24/7 assistant on your website that answers from your own catalog, prices, policies and orders — then hands you the insights.
+          Mira puts a 24/7 assistant on your website that answers from your own catalog, prices, policies and orders, then hands you the insights.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5 animate-rise" style={{ animationDelay: '480ms' }}>
           <Button size="lg" href="/signup" icon="arrow">
@@ -296,14 +296,14 @@ export function Hero() {
             <div className="flex flex-col gap-1.5 text-left text-[13px]">
               <span className="self-end rounded-[14px] rounded-br-md bg-ink px-3 py-1.5 text-white">Where’s my order?</span>
               <span className="flex items-center gap-1.5 rounded-[14px] rounded-bl-md bg-white/80 px-3 py-1.5">
-                <Icon name="truck" size={14} /> Shipped — arriving Thursday
+                <Icon name="truck" size={14} /> Shipped, arriving Thursday
               </span>
             </div>
           </FloatCard>
 
         </div>
       </div>
-      <p className="relative mt-6 text-center text-[13px] text-muted">Live demo — type a question. Mira answers from a sample fashion store’s own data.</p>
+      <p className="relative mt-6 text-center text-[13px] text-muted">Live demo. Type a question and Mira answers from a sample fashion store’s own data.</p>
     </section>
   )
 }

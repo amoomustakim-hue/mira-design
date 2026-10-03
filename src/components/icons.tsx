@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 
-/** A small inline icon set (1.6px strokes, 24px grid) — no icon library needed. */
+/** A small inline icon set (1.6px strokes, 24px grid), so no icon library is needed. */
 const paths = {
   home: 'M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z',
   chat: 'M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z',

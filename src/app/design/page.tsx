@@ -28,14 +28,14 @@ const TYPE = [
   ['H3', '36 / 1.1 / −2.5%', 'Feature panel titles'],
   ['Page title', '32 / 1.2 / −3%', 'Dashboard page headings'],
   ['Body L', '17 / 1.6', 'Hero and section intros'],
-  ['Body', '14–15 / 1.5', 'Dashboard and chat text'],
+  ['Body', '14 to 15 / 1.5', 'Dashboard and chat text'],
   ['Caption', '13 / 1.4', 'Labels, meta'],
   ['Mono', '12', 'IDs, codes, counters'],
 ]
 
 const MOTION = [
   ['Button press', 'scale 0.97', '160ms', 'ease-out (0.22, 1, 0.36, 1)'],
-  ['Hover colour / toggle', 'background, translate', '160–240ms', 'ease-out'],
+  ['Hover colour / toggle', 'background, translate', '160 to 240ms', 'ease-out'],
   ['Message entrance', 'opacity 0→1, y 8→0', '280ms', 'ease-out'],
   ['Product card / sheet / panel open', 'opacity, y 10→0, scale .96→1', '260ms', 'ease-out'],
   ['Overlay fade', 'opacity', '220ms', 'ease-out'],
@@ -259,7 +259,7 @@ export default function DesignNotes() {
               <Bubble m={m('assistant', 'That’s Mira, answering from a demo store’s own data. Want this on your website?', { link: { label: 'Start your free trial', href: '/signup' } })} products={products} onOpen={() => {}} />
             </WidgetFrame>
             <WidgetFrame label="9 · Owner stepped in">
-              <Bubble m={m('owner', 'Hi Tolu, this is Ada from Adire Lane — I’ll hold the L size for you till 6pm.')} products={products} onOpen={() => {}} />
+              <Bubble m={m('owner', 'Hi Tolu, this is Ada from Adire Lane. I’ll hold the L size for you till 6pm.')} products={products} onOpen={() => {}} />
             </WidgetFrame>
           </div>
         </Section>

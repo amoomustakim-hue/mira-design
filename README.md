@@ -1,4 +1,4 @@
-# Mira — design front-end
+# Mira: design front-end
 
 A clickable, deployable design for **Mira**, the customer-service SaaS:
 the landing page with a live demo chat, a simple login, the business dashboard
@@ -23,7 +23,7 @@ Deploy: import the repo in Vercel. There are no environment variables.
 | Route | Screen |
 | --- | --- |
 | `/` | Landing: centred hero over drifting colour fields, the live demo chat inside a phone mockup that stands up as you scroll, floating glass cards, industries, features, pricing (₦50,000/month + free trial), contact and signup footer, floating chat widget |
-| `/login`, `/signup` | **No real authentication** — any details open the dashboard |
+| `/login`, `/signup` | **No real authentication.** Any details open the dashboard |
 | `/dashboard` | Overview: queries, orders, revenue, answered rate, daily chart, top products, latest orders |
 | `/dashboard/chat` | Inbox and threads; the owner can step in, auto-replies toggle per chat |
 | `/dashboard/analytics` | Insights: recurring complaints, most-asked questions, hot vs least-demanded products |
@@ -63,6 +63,6 @@ widget all follow. Palette, type, spacing and motion rules are documented at
 - All numbers, customers, orders and stats are sample data. Marketing copy and
   figures (e.g. "96% answered without a human") are placeholders to be replaced
   with real ones.
-- Transitions run 160–280ms and animate only opacity and transform; glass falls
+- Transitions run 160 to 280ms and animate only opacity and transform; glass falls
   back to solid white where `backdrop-filter` isn't supported; reduced-motion
   is respected.

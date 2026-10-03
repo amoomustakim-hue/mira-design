@@ -55,7 +55,7 @@ export default function OverviewPage() {
               <CountUp value={ov.queries} /> questions answered in 14 days.
             </h1>
             <p className="max-w-[460px] text-[14px] text-ink-2 sm:text-[15px]">
-              {pct(ov.answeredRate)} without you lifting a finger — and {ov.orders} orders came through chat.
+              {pct(ov.answeredRate)} without you lifting a finger, and {ov.orders} orders came through chat.
             </p>
             <div className="mt-1 flex flex-wrap gap-2">
               <Link href="/dashboard/chat" className="inline-flex h-10 items-center gap-2 rounded-pill bg-ink px-4 text-[13px] font-medium text-white transition-transform active:scale-[0.97]">
