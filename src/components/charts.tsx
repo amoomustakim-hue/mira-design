@@ -41,12 +41,12 @@ export function AreaChart({ data, labels, height = 180 }: { data: number[]; labe
 }
 
 /** Horizontal bar, for ranked lists. */
-export function Bar({ value, max, tone = 'lime' }: { value: number; max: number; tone?: 'lime' | 'ink' | 'mist' }) {
+export function Bar({ value, max, tone = 'lime', delay = 0 }: { value: number; max: number; tone?: 'lime' | 'ink' | 'mist'; delay?: number }) {
   return (
-    <span className="block h-2 w-full overflow-hidden rounded-pill bg-mist">
+    <span className="block h-2 w-full overflow-hidden rounded-pill bg-white/70">
       <span
-        className={cx('block h-full rounded-pill transition-[width] duration-300', tone === 'ink' ? 'bg-ink' : tone === 'lime' ? 'bg-lime-2' : 'bg-line')}
-        style={{ width: `${Math.max(3, (value / max) * 100)}%` }}
+        className={cx('grow-x block h-full rounded-pill', tone === 'ink' ? 'bg-ink' : tone === 'lime' ? 'bg-[linear-gradient(90deg,#e5f186,#b9d03a)]' : 'bg-[linear-gradient(90deg,#dcdce2,#b9b9c2)]')}
+        style={{ width: `${Math.max(3, (value / max) * 100)}%`, animationDelay: `${delay}ms` }}
       />
     </span>
   )

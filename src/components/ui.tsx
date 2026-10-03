@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { ComponentProps, ReactNode } from 'react'
 import { cx } from '@/lib/format'
+import { CountUp, Sparkline } from './fx'
 import { Icon, type IconName } from './icons'
 
 /** The Mira mark: three soft bars, like a voice that's answering. */
@@ -74,7 +75,7 @@ export function Badge({ tone = 'neutral', children }: { tone?: 'neutral' | 'lime
 
 export function Card({ className, children, ...rest }: ComponentProps<'div'>) {
   return (
-    <div className={cx('rounded-card bg-surface p-5 shadow-soft', className)} {...rest}>
+    <div className={cx('glass-card rounded-card p-5', className)} {...rest}>
       {children}
     </div>
   )
@@ -143,20 +144,25 @@ export function ProductImage({ image, name, tint = 'mist', className }: { image?
   )
 }
 
-export function Stat({ label, value, delta }: { label: string; value: string; delta?: number }) {
+export function Stat({ label, value, delta, format = (n: number) => n.toLocaleString('en-NG'), spark, delay = 0 }: { label: string; value: number; delta?: number; format?: (n: number) => string; spark?: number[]; delay?: number }) {
   return (
-    <Card className="flex flex-col gap-3">
+    <Card className="group relative flex flex-col gap-3 overflow-hidden transition-transform duration-[var(--duration-base)] ease-[var(--ease-out)] hover:-translate-y-0.5 animate-rise" style={{ animationDelay: `${delay}ms` }}>
       <span className="text-[13px] text-muted">{label}</span>
-      <span className="text-[28px] leading-none font-medium tracking-tight tabular-nums">{value}</span>
-      {delta !== undefined && (
-        <span className={cx('inline-flex items-center gap-1 text-xs', delta >= 0 ? 'text-ink-2' : 'text-danger')}>
-          <span className={cx('rounded-pill px-1.5 py-0.5', delta >= 0 ? 'bg-lime' : 'bg-[#fbeae6]')}>
-            {delta > 0 ? '+' : ''}
-            {Math.round(delta * 100)}%
+      <span className="text-[26px] leading-none font-medium tracking-tight tabular-nums sm:text-[30px]">
+        <CountUp value={value} format={format} />
+      </span>
+      <span className="flex items-end justify-between gap-2">
+        {delta !== undefined && (
+          <span className={cx('inline-flex items-center gap-1 text-xs', delta >= 0 ? 'text-ink-2' : 'text-danger')}>
+            <span className={cx('rounded-pill px-1.5 py-0.5', delta >= 0 ? 'bg-lime-2/70' : 'bg-[#fbeae6]')}>
+              {delta > 0 ? '+' : ''}
+              {Math.round(delta * 100)}%
+            </span>
+            <span className="hidden sm:inline">vs last 14 days</span>
           </span>
-          vs last 14 days
-        </span>
-      )}
+        )}
+        {spark && <Sparkline data={spark} />}
+      </span>
     </Card>
   )
 }

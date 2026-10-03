@@ -85,8 +85,8 @@ export default function ChatPage() {
                 <p className="text-xs text-muted">{open.channel}</p>
               </div>
               <label className="flex items-center gap-2 text-[13px] text-ink-2">
-                <span className="hidden sm:inline">AI replies</span>
-                <Toggle checked={aiOn[open.id] ?? true} onChange={(v) => setAiOn((a) => ({ ...a, [open.id]: v }))} label="AI replies in this chat" />
+                <span className="hidden sm:inline">Auto-replies</span>
+                <Toggle checked={aiOn[open.id] ?? true} onChange={(v) => setAiOn((a) => ({ ...a, [open.id]: v }))} label="Auto-replies in this chat" />
               </label>
             </div>
             <div ref={thread} className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto bg-mist/40 px-4 py-5">
