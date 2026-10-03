@@ -134,7 +134,7 @@ function Orders() {
               </Button>
             ) : (
               <p className="flex items-center justify-center gap-2 rounded-pill bg-lime py-3 text-[14px]">
-                <Icon name="check" size={16} /> Delivered — the customer has been told.
+                <Icon name="check" size={16} /> Delivered. The customer has been told.
               </p>
             )}
             <p className="text-center text-xs text-muted">Status changes are shared with the customer in chat automatically.</p>

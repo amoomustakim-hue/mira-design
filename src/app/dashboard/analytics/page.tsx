@@ -34,7 +34,7 @@ export default function AnalyticsPage() {
 
   return (
     <>
-      <PageHead title="Insights" sub="What customers ask, complain about and want — from every conversation." />
+      <PageHead title="Insights" sub="What customers ask, complain about and want, from every conversation." />
 
       <div className="mb-4 grid gap-3 sm:grid-cols-3 sm:gap-4">
         <Card className="flex items-center gap-4 animate-rise">

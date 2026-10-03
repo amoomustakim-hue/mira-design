@@ -33,7 +33,7 @@ function Shell({ title, sub, children, foot }: { title: string; sub: string; chi
         <div className="mt-7">{children}</div>
         <p className="mt-6 text-center text-[13px] text-muted">{foot}</p>
       </div>
-      <p className="relative mt-6 text-center text-xs text-muted">Design preview — no real accounts. Any details will open the demo dashboard.</p>
+      <p className="relative mt-6 text-center text-xs text-muted">Design preview with no real accounts. Any details will open the demo dashboard.</p>
     </main>
   )
 }

@@ -11,7 +11,7 @@ type Knowledge = {
 }
 
 /**
- * DEMO ONLY — a keyword matcher standing in for the real assistant so the widget can
+ * DEMO ONLY: a keyword matcher standing in for the real assistant so the widget can
  * be tried. Like the real assistant, it only ever answers from the business's
  * own data, and says so when it can't.
  */
@@ -31,10 +31,10 @@ export function reply(input: string, history: ChatMessage[], k: Knowledge): Chat
   if (orderId || has('my order', 'track', 'where is')) {
     const o = orderId && k.orders.find((x) => x.id === `MRA-${orderId[1]}`)
     if (o) {
-      const status = { cart: 'is still in a cart — it hasn’t been placed yet', placed: 'has been placed and is being packed', shipped: 'has shipped and is on its way', delivered: 'was delivered' }[o.status]
+      const status = { cart: 'is still in a cart and hasn’t been placed yet', placed: 'has been placed and is being packed', shipped: 'has shipped and is on its way', delivered: 'was delivered' }[o.status]
       return msg(`Order ${o.id} ${status}. Total: ${naira(o.total)}.`)
     }
-    return msg('I can track that for you — what’s your order number? It looks like MRA-2040.')
+    return msg('I can track that for you. What’s your order number? It looks like MRA-2040.')
   }
 
   // Products by name or category
@@ -47,7 +47,7 @@ export function reply(input: string, history: ChatMessage[], k: Knowledge): Chat
     const p = matches[0]
     if (has('stock', 'available', 'size', 'have')) {
       return p.available && p.stock > 0
-        ? msg(`Yes — the ${p.name} is in stock (${p.stock} left). It’s ${naira(p.price)}.`, { products: [p.id] })
+        ? msg(`Yes, the ${p.name} is in stock (${p.stock} left). It’s ${naira(p.price)}.`, { products: [p.id] })
         : msg(`The ${p.name} is sold out right now. Here’s something similar that’s available:`, {
             products: k.products.filter((x) => x.available && x.id !== p.id).slice(0, 2).map((x) => x.id),
           })
@@ -74,7 +74,7 @@ export function reply(input: string, history: ChatMessage[], k: Knowledge): Chat
     return msg(k.faqs.find((x) => x.id === 'f4')?.answer ?? 'We accept card and transfer.')
   }
   if (has('open', 'hour', 'close', 'sunday', 'saturday', 'time')) {
-    const lines = k.hours.map((h) => `${h.day.slice(0, 3)}: ${h.closed ? 'closed' : `${h.open}–${h.close}`}`)
+    const lines = k.hours.map((h) => `${h.day.slice(0, 3)}: ${h.closed ? 'closed' : `${h.open} to ${h.close}`}`)
     return msg(`Our opening hours:\n${lines.join('\n')}`)
   }
   if (has('discount', 'promo', 'code', 'sale', 'offer')) {
@@ -85,7 +85,7 @@ export function reply(input: string, history: ChatMessage[], k: Knowledge): Chat
     return msg(k.faqs.find((x) => x.id === 'f3')?.answer ?? '')
   }
   if (has('hi', 'hello', 'hey', 'good morning', 'good afternoon')) {
-    return msg('Hello! Ask me about a product, delivery, returns, opening hours — or track an order.')
+    return msg('Hello! Ask me about a product, delivery, returns, opening hours, or track an order.')
   }
 
   // Grounded: no guessing outside the business's data.

@@ -80,7 +80,7 @@ export const insights: Insights = {
 }
 
 export const faqs: Faq[] = [
-  { id: 'f1', question: 'How long does delivery take?', answer: 'Lagos: 1–2 working days. Other states: 3–5 working days.' },
+  { id: 'f1', question: 'How long does delivery take?', answer: 'Lagos: 1 to 2 working days. Other states: 3 to 5 working days.' },
   { id: 'f2', question: 'How much is delivery?', answer: '₦3,000 within Lagos, ₦6,500 to other states. Free on orders above ₦80,000.' },
   { id: 'f3', question: 'What sizes do you stock?', answer: 'UK 8 to 18 for dresses and sets. Kaftans and agbada come in S, M, L, XL.' },
   { id: 'f4', question: 'How can I pay?', answer: 'Card, bank transfer or USSD at checkout. Pay on delivery is available in Lagos.' },
@@ -117,9 +117,9 @@ export const conversations: Conversation[] = [
     resolved: false,
     messages: [
       { id: 'm1', from: 'customer', text: 'Hi, is the indigo kaftan available in L?', at: ago(16) },
-      { id: 'm2', from: 'assistant', text: 'Yes — the Indigo Adire Kaftan is in stock in L. It’s ₦38,000.', products: ['p1'], at: ago(16) },
+      { id: 'm2', from: 'assistant', text: 'Yes, the Indigo Adire Kaftan is in stock in L. It’s ₦38,000.', products: ['p1'], at: ago(16) },
       { id: 'm3', from: 'customer', text: 'How much is delivery to Ikeja?', at: ago(14) },
-      { id: 'm4', from: 'assistant', text: 'Delivery within Lagos is ₦3,000 and takes 1–2 working days.', at: ago(14) },
+      { id: 'm4', from: 'assistant', text: 'Delivery within Lagos is ₦3,000 and takes 1 to 2 working days.', at: ago(14) },
       { id: 'm5', from: 'customer', text: 'Ok placing the order now', at: ago(12) },
     ],
   },
@@ -131,7 +131,7 @@ export const conversations: Conversation[] = [
     resolved: true,
     messages: [
       { id: 'm1', from: 'customer', text: 'Where is my order MRA-2040?', at: ago(100) },
-      { id: 'm2', from: 'assistant', text: 'Order MRA-2040 has shipped and should arrive within 3–5 working days.', at: ago(100) },
+      { id: 'm2', from: 'assistant', text: 'Order MRA-2040 has shipped and should arrive within 3 to 5 working days.', at: ago(100) },
     ],
   },
   {
@@ -142,7 +142,7 @@ export const conversations: Conversation[] = [
     resolved: false,
     messages: [
       { id: 'm1', from: 'customer', text: 'When will the Aso-Oke clutch be back?', at: ago(30) },
-      { id: 'm2', from: 'assistant', text: 'The Aso-Oke Clutch is sold out right now. I’ve let the team know you’re interested — they’ll confirm a restock date.', products: ['p3'], at: ago(30) },
+      { id: 'm2', from: 'assistant', text: 'The Aso-Oke Clutch is sold out right now. I’ve let the team know you’re interested. They’ll confirm a restock date.', products: ['p3'], at: ago(30) },
     ],
   },
   {

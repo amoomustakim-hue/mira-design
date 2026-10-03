@@ -131,7 +131,7 @@ export function Bubble({ m, products, onOpen }: { m: ChatMessage; products: Prod
   )
 }
 
-/** Full-size product view inside the chat panel — opens in place, no new tab. */
+/** Full-size product view inside the chat panel. Opens in place, no new tab. */
 function Preview({ p, onClose }: { p: Product; onClose: () => void }) {
   return (
     <div className="absolute inset-0 z-10 flex flex-col bg-surface/95 p-4 animate-fade" role="dialog" aria-label={p.name}>

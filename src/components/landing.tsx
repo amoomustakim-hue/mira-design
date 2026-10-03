@@ -180,7 +180,7 @@ function FeatureChat() {
   return (
     <div className="flex w-full max-w-[340px] flex-col gap-2.5">
       <span className="self-end rounded-[18px] rounded-br-md bg-ink px-3.5 py-2.5 text-sm text-white">Is the wrap dress in stock?</span>
-      <span className="self-start rounded-[18px] rounded-bl-md glass-strong px-3.5 py-2.5 text-sm">Yes — 6 left in the Ankara Wrap Dress. It’s ₦27,500.</span>
+      <span className="self-start rounded-[18px] rounded-bl-md glass-strong px-3.5 py-2.5 text-sm">Yes, 6 left in the Ankara Wrap Dress. It’s ₦27,500.</span>
       <div className="flex w-[168px] flex-col overflow-hidden rounded-[18px] glass-strong">
         <ProductImage name="Ankara Wrap Dress" tint="lime" className="h-24" />
         <span className="flex items-center justify-between p-3 text-[13px]">
@@ -264,10 +264,10 @@ function FeatureInsights() {
 }
 
 const FEATURES = [
-  { chip: 'Chat assistant', title: 'Answers in seconds, from your own data', body: 'Prices, sizes, stock, delivery fees, opening hours. Mira only says what your business has told it — and passes anything else to you.', tone: 'glass-lime', visual: <FeatureChat /> },
+  { chip: 'Chat assistant', title: 'Answers in seconds, from your own data', body: 'Prices, sizes, stock, delivery fees, opening hours. Mira only says what your business has told it, and passes anything else to you.', tone: 'glass-lime', visual: <FeatureChat /> },
   { chip: 'Product catalog', title: 'Prices and stock, always current', body: 'Add products once. Flip availability from your phone and the assistant stops offering what you’ve sold out of.', tone: 'glass-strong', visual: <FeatureCatalog /> },
   { chip: 'Order management', title: 'From cart to doorstep, in one list', body: 'Every order moves cart → placed → shipped → delivered, and customers can ask the assistant where theirs is.', tone: 'glass-lime', visual: <FeatureOrders /> },
-  { chip: 'Insights dashboard', title: 'Know what customers really want', body: 'See recurring complaints, the questions asked most, and which products are hot — or sitting still.', tone: 'glass-strong', visual: <FeatureInsights /> },
+  { chip: 'Insights dashboard', title: 'Know what customers really want', body: 'See recurring complaints, the questions asked most, and which products are hot or sitting still.', tone: 'glass-strong', visual: <FeatureInsights /> },
 ]
 
 export function Features() {
@@ -343,7 +343,7 @@ export function Features() {
 
 export function Steps() {
   const steps = [
-    ['Add your business', 'Products, prices, FAQs, policies and opening hours — or import a spreadsheet.'],
+    ['Add your business', 'Products, prices, FAQs, policies and opening hours. Or import a spreadsheet.'],
     ['Paste one line', 'Add the widget to your website. It takes your brand colour automatically.'],
     ['Customers get answers', 'Day and night. You see every chat, order and insight on your phone.'],
   ]
@@ -455,7 +455,7 @@ export function Footer() {
               <span className="grid size-7 place-items-center rounded-full bg-lime">
                 <Icon name="check" size={15} />
               </span>
-              Thanks — the team will get back to you shortly.
+              Thanks! The team will get back to you shortly.
             </p>
           ) : (
             <>

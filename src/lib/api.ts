@@ -9,7 +9,7 @@ import type { ChatMessage, Conversation, DayHours, Faq, Insights, Order, OrderSt
  * Today they work on an in-memory copy of the sample data in `mock.ts`, so the
  * design can be clicked through without a server. To connect a real backend,
  * replace each body with a `fetch` to the matching endpoint (suggested routes
- * are in the comments) — the screens will not need to change.
+ * are in the comments). The screens will not need to change.
  */
 
 const copy = <T>(v: T): T => structuredClone(v)

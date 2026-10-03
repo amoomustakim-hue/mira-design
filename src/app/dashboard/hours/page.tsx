@@ -16,7 +16,7 @@ export default function HoursPage() {
     <>
       <PageHead
         title="Opening hours"
-        sub="The assistant still answers when you’re closed — and says when you’ll be back."
+        sub="The assistant still answers when you’re closed, and says when you’ll be back."
         action={
           <div className="flex items-center gap-3">
             <Saved show={saved} />

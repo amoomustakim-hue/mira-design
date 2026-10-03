@@ -108,7 +108,7 @@ export default function ChatPage() {
               <input
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                placeholder={aiOn[open.id] ?? true ? 'Reply yourself — the assistant will pause' : 'Write a reply'}
+                placeholder={aiOn[open.id] ?? true ? 'Reply yourself and the assistant will pause' : 'Write a reply'}
                 className="h-11 min-w-0 flex-1 rounded-pill bg-mist px-4 text-[14px] outline-none placeholder:text-muted"
                 aria-label="Reply"
               />
