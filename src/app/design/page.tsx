@@ -50,7 +50,10 @@ const COMPONENTS = [
   ['Chip', 'Outlined label above headings'],
   ['Badge', 'neutral · lime · ink · danger; 24 high'],
   ['Card', 'White, 28 radius, soft shadow'],
-  ['Glass', 'Frosted panel; solid white fallback without backdrop-filter'],
+  ['Glass', 'glass (20px blur) · glass-strong (28px, floating) · glass-lime (tinted panels); solid fallbacks without backdrop-filter'],
+  ['Aurora', 'Slow-drifting colour fields behind glass; radial gradients, transform-only, no blur filter'],
+  ['Phone mockup', 'Flagship-size frame with island, status bar and home indicator; stands up from a 26° tilt as you scroll'],
+  ['Floating cards', 'Glass stat cards around the phone; drift with the cursor (desktop only)'],
   ['Toggle', 'Ink track with a lime dot when on'],
   ['Orb', 'Frosted sphere used in the loader and auth'],
   ['Stat', 'Label, number, change vs last period'],
@@ -142,7 +145,7 @@ export default function DesignNotes() {
             <li>Radius: pill 999 · card 28 · panel 40 · inputs 14 · bubbles 18 (6 on the tail corner).</li>
             <li>Touch targets at least 40px; primary actions 48px on phones.</li>
             <li>shadow-soft for resting cards, shadow-float for anything floating (widget, sheets, menus).</li>
-            <li>Glass: white at 62% with an 18px blur and 1.4 saturation; solid white at 90% without blur support.</li>
+            <li>Glass: white 66%→34% gradient, 20px blur, 1.6 saturation, 1px white edge with an inner highlight; solid white at 86% without blur support.</li>
           </ul>
           <div className="flex flex-wrap items-end gap-4">
             <Card className="w-40 text-[13px]">shadow-soft</Card>

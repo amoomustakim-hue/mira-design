@@ -3,8 +3,8 @@
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { cx, naira } from '@/lib/format'
-import { ChatPanel, useChat } from './chat'
-import { Icon, type IconName } from './icons'
+import { Aurora, InlineIcon } from './hero'
+import { Icon } from './icons'
 import { Badge, Button, Chip, Logo, Orb, ProductImage, Toggle } from './ui'
 
 /* ---------- Preloader: the frosted orb counting up, once per visit ---------- */
@@ -59,7 +59,7 @@ const NAV = [
 export function Nav() {
   const [open, setOpen] = useState(false)
   return (
-    <header className="sticky top-3 z-40 mx-auto flex w-full max-w-[1240px] items-center justify-between gap-4 px-3 sm:px-5">
+    <header className="fixed inset-x-0 top-3 z-40 mx-auto flex w-full max-w-[1240px] items-center justify-between gap-4 px-3 sm:px-5">
       <div className="glass flex h-14 w-full items-center justify-between rounded-pill pr-2 pl-5">
         <a href="#top" aria-label="Mira home">
           <Logo />
@@ -98,82 +98,6 @@ export function Nav() {
         </div>
       )}
     </header>
-  )
-}
-
-/* ---------- Hero, with the live demo chat ---------- */
-
-function InlineIcon({ name, dark }: { name: IconName; dark?: boolean }) {
-  return (
-    <span className={cx('mx-1 inline-grid size-[0.9em] translate-y-[0.08em] place-items-center rounded-full align-baseline', dark ? 'bg-ink text-white' : 'bg-lime text-ink')}>
-      <Icon name={name} size={18} className="size-[0.5em]" />
-    </span>
-  )
-}
-
-export function Hero() {
-  const chat = useChat({ inviteAfter: 2 })
-  return (
-    <section id="top" className="mx-auto grid max-w-[1240px] items-center gap-10 px-5 pt-12 pb-16 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pt-20 lg:pb-24">
-      <div className="flex flex-col items-start gap-6 animate-rise">
-        <Chip>AI customer service · built for Nigerian businesses</Chip>
-        <h1 className="text-[42px] leading-[1.02] font-medium tracking-[-0.035em] text-balance sm:text-[56px] lg:text-[64px]">
-          Every customer answered
-          <InlineIcon name="chat" />
-          <InlineIcon name="bolt" dark /> day and night.
-        </h1>
-        <p className="max-w-[460px] text-[17px] leading-relaxed text-ink-2">
-          Mira puts an AI assistant on your website that answers from your own catalog, prices, policies and orders — then hands you the insights.
-        </p>
-        <div className="flex flex-wrap items-center gap-2.5">
-          <Button size="lg" href="/signup" icon="arrow">
-            Start free trial
-          </Button>
-          <span className="lg:hidden">
-            <Button size="lg" variant="soft" href="#demo">
-              Try the demo
-            </Button>
-          </span>
-        </div>
-        <div className="flex items-center gap-4 pt-2 text-[13px] text-muted">
-          <span className="flex items-center gap-1.5">
-            <Icon name="check" size={15} className="text-ink" /> One plan, {naira(50000)}/month
-          </span>
-          <span className="flex items-center gap-1.5">
-            <Icon name="check" size={15} className="text-ink" /> Works on any website
-          </span>
-        </div>
-      </div>
-
-      <div id="demo" className="relative scroll-mt-24">
-        {/* Soft clay shapes behind the glass, like the inspo's 3D objects */}
-        <div aria-hidden="true" className="absolute -top-8 -right-6 size-48 rounded-full bg-lime opacity-80 blur-2xl sm:size-64" />
-        <div aria-hidden="true" className="absolute -bottom-10 -left-8 hidden sm:block">
-          <Orb className="size-40" />
-        </div>
-        <div className="relative">
-          <p className="mb-3 flex items-center gap-2 text-[13px] text-muted">
-            <span className="relative flex size-2">
-              <span className="absolute inset-0 animate-ping rounded-full bg-lime-3 opacity-60" />
-              <span className="relative size-2 rounded-full bg-lime-3" />
-            </span>
-            Live demo — this is Mira answering for a sample fashion store
-          </p>
-          <div className="glass h-[520px] overflow-hidden rounded-[28px] shadow-float sm:h-[560px]">
-            <ChatPanel chat={chat} />
-          </div>
-          <div className="glass absolute bottom-40 -left-16 hidden items-center gap-3 rounded-[20px] p-3 pr-4 shadow-float xl:flex">
-            <Ring value={0.96} />
-            <span className="text-xs leading-tight text-ink-2">
-              of questions
-              <br />
-              answered without
-              <br />a human
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
   )
 }
 
@@ -256,8 +180,8 @@ function FeatureChat() {
   return (
     <div className="flex w-full max-w-[340px] flex-col gap-2.5">
       <span className="self-end rounded-[18px] rounded-br-md bg-ink px-3.5 py-2.5 text-sm text-white">Is the wrap dress in stock?</span>
-      <span className="self-start rounded-[18px] rounded-bl-md bg-surface px-3.5 py-2.5 text-sm shadow-soft">Yes — 6 left in the Ankara Wrap Dress. It’s ₦27,500.</span>
-      <div className="flex w-[168px] flex-col overflow-hidden rounded-[18px] bg-surface shadow-soft">
+      <span className="self-start rounded-[18px] rounded-bl-md glass-strong px-3.5 py-2.5 text-sm">Yes — 6 left in the Ankara Wrap Dress. It’s ₦27,500.</span>
+      <div className="flex w-[168px] flex-col overflow-hidden rounded-[18px] glass-strong">
         <ProductImage name="Ankara Wrap Dress" tint="lime" className="h-24" />
         <span className="flex items-center justify-between p-3 text-[13px]">
           ₦27,500 <Badge tone="lime">6 left</Badge>
@@ -276,7 +200,7 @@ function FeatureCatalog() {
   return (
     <div className="flex w-full max-w-[360px] flex-col gap-2">
       {items.map((it, i) => (
-        <div key={it.n} className="flex items-center gap-3 rounded-[18px] bg-surface p-2.5 pr-3.5 shadow-soft">
+        <div key={it.n} className="flex items-center gap-3 rounded-[18px] glass-strong p-2.5 pr-3.5">
           <ProductImage name={it.n} tint={it.t} className="size-12 rounded-[12px]" />
           <span className="flex-1 text-sm">
             {it.n}
@@ -297,7 +221,7 @@ function FeatureOrders() {
     return () => clearInterval(t)
   }, [])
   return (
-    <div className="w-full max-w-[380px] rounded-[22px] bg-surface p-5 shadow-soft">
+    <div className="w-full max-w-[380px] rounded-[22px] glass-strong p-5">
       <div className="flex items-center justify-between text-sm">
         <span className="font-medium">MRA-2040</span>
         <Badge tone={at === 3 ? 'ink' : 'lime'}>{steps[at]}</Badge>
@@ -318,7 +242,7 @@ function FeatureInsights() {
   const bars = [40, 62, 48, 80, 70, 96, 88]
   return (
     <div className="flex w-full max-w-[380px] items-end gap-4">
-      <div className="flex-1 rounded-[22px] bg-surface p-4 shadow-soft">
+      <div className="flex-1 rounded-[22px] glass-strong p-4">
         <p className="text-[13px] text-muted">Most asked this week</p>
         <p className="mt-1 text-sm font-medium">“How much is delivery to Abuja?”</p>
         <div className="mt-4 flex h-20 items-end gap-1.5">
@@ -327,7 +251,7 @@ function FeatureInsights() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col items-center gap-2 rounded-[22px] bg-surface p-4 shadow-soft">
+      <div className="flex flex-col items-center gap-2 rounded-[22px] glass-strong p-4">
         <Ring value={0.29} size={72} />
         <span className="text-center text-[11px] leading-tight text-muted">
           fewer delivery
@@ -340,15 +264,17 @@ function FeatureInsights() {
 }
 
 const FEATURES = [
-  { chip: 'AI chat assistant', title: 'Answers in seconds, from your own data', body: 'Prices, sizes, stock, delivery fees, opening hours. Mira only says what your business has told it — and passes anything else to you.', tone: 'bg-lime', visual: <FeatureChat /> },
-  { chip: 'Product catalog', title: 'Prices and stock, always current', body: 'Add products once. Flip availability from your phone and the assistant stops offering what you’ve sold out of.', tone: 'bg-mist', visual: <FeatureCatalog /> },
-  { chip: 'Order management', title: 'From cart to doorstep, in one list', body: 'Every order moves cart → placed → shipped → delivered, and customers can ask the assistant where theirs is.', tone: 'bg-lime', visual: <FeatureOrders /> },
-  { chip: 'Insights dashboard', title: 'Know what customers really want', body: 'See recurring complaints, the questions asked most, and which products are hot — or sitting still.', tone: 'bg-mist', visual: <FeatureInsights /> },
+  { chip: 'AI chat assistant', title: 'Answers in seconds, from your own data', body: 'Prices, sizes, stock, delivery fees, opening hours. Mira only says what your business has told it — and passes anything else to you.', tone: 'glass-lime', visual: <FeatureChat /> },
+  { chip: 'Product catalog', title: 'Prices and stock, always current', body: 'Add products once. Flip availability from your phone and the assistant stops offering what you’ve sold out of.', tone: 'glass-strong', visual: <FeatureCatalog /> },
+  { chip: 'Order management', title: 'From cart to doorstep, in one list', body: 'Every order moves cart → placed → shipped → delivered, and customers can ask the assistant where theirs is.', tone: 'glass-lime', visual: <FeatureOrders /> },
+  { chip: 'Insights dashboard', title: 'Know what customers really want', body: 'See recurring complaints, the questions asked most, and which products are hot — or sitting still.', tone: 'glass-strong', visual: <FeatureInsights /> },
 ]
 
 export function Features() {
   return (
-    <section id="features" className="mx-auto max-w-[1240px] scroll-mt-24 px-3 py-10 sm:px-5 lg:py-16">
+    <section id="features" className="relative isolate scroll-mt-24 py-10 lg:py-16">
+      <Aurora className="-z-10" />
+      <div className="mx-auto max-w-[1240px] px-3 sm:px-5">
       <div className="mx-auto mb-10 max-w-[720px] px-2 text-center">
         <h2 className="text-[34px] leading-[1.05] font-medium tracking-[-0.03em] text-balance sm:text-[48px]">
           Customer service
@@ -371,6 +297,7 @@ export function Features() {
             <div className="flex justify-center lg:justify-end">{f.visual}</div>
           </article>
         ))}
+      </div>
       </div>
     </section>
   )
@@ -410,8 +337,10 @@ const INCLUDED = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="mx-auto max-w-[1240px] scroll-mt-24 px-3 py-14 sm:px-5 lg:py-20">
-      <div className="grid overflow-hidden rounded-panel bg-surface shadow-soft lg:grid-cols-[1fr_1.1fr]">
+    <section id="pricing" className="relative isolate scroll-mt-24 py-14 lg:py-20">
+      <Aurora className="-z-10" intensity={0.9} />
+      <div className="mx-auto max-w-[1240px] px-3 sm:px-5">
+      <div className="glass-strong grid overflow-hidden rounded-panel lg:grid-cols-[1fr_1.1fr]">
         <div className="relative flex flex-col justify-between gap-10 overflow-hidden bg-ink p-8 text-white sm:p-12">
           <div aria-hidden="true" className="absolute -right-24 -bottom-24 size-80 rounded-full bg-lime-2 opacity-20 blur-3xl" />
           <div className="flex flex-col gap-4">
@@ -433,7 +362,7 @@ export function Pricing() {
         </div>
         <ul className="flex flex-col justify-center gap-1 p-6 sm:p-10">
           {INCLUDED.map((x) => (
-            <li key={x} className="flex items-center gap-3 rounded-[16px] px-3 py-3 text-[15px] transition-colors hover:bg-mist">
+            <li key={x} className="flex items-center gap-3 rounded-[16px] px-3 py-3 text-[15px] transition-colors hover:bg-white/60">
               <span className="grid size-6 shrink-0 place-items-center rounded-full bg-lime text-ink">
                 <Icon name="check" size={14} />
               </span>
@@ -441,6 +370,7 @@ export function Pricing() {
             </li>
           ))}
         </ul>
+      </div>
       </div>
     </section>
   )

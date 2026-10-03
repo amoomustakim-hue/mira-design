@@ -22,7 +22,7 @@ Deploy: import the repo in Vercel. There are no environment variables.
 
 | Route | Screen |
 | --- | --- |
-| `/` | Landing: hero with the live demo chat, industries, features, pricing (₦50,000/month + free trial), contact and signup footer, floating chat widget |
+| `/` | Landing: centred hero over drifting colour fields, the live demo chat inside a phone mockup that stands up as you scroll, floating glass cards, industries, features, pricing (₦50,000/month + free trial), contact and signup footer, floating chat widget |
 | `/login`, `/signup` | **No real authentication** — any details open the dashboard |
 | `/dashboard` | Overview: queries, orders, revenue, answered rate, daily chart, top products, latest orders |
 | `/dashboard/chat` | Inbox and threads; the owner can step in, AI replies toggle per chat |
