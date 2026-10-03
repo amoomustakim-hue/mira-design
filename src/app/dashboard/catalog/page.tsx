@@ -36,7 +36,7 @@ export default function CatalogPage() {
       />
 
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <label className="glass flex h-11 items-center gap-2 rounded-pill px-4 sm:w-[280px]">
+        <label className="glass-strong flex h-11 items-center gap-2 rounded-pill px-4 sm:w-[280px]">
           <Icon name="search" size={16} className="text-muted" />
           <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search products" className="min-w-0 flex-1 bg-transparent text-[14px] outline-none placeholder:text-muted" aria-label="Search products" />
         </label>
@@ -64,12 +64,16 @@ export default function CatalogPage() {
         <Card className="py-16 text-center text-[14px] text-muted">No products match “{query}”.</Card>
       ) : (
         <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4">
-          {shown.map((p) => {
+          {shown.map((p, i) => {
             const out = !p.available || p.stock === 0
             return (
-              <Card key={p.id} className={cx('flex flex-col gap-0 overflow-hidden p-0 transition-opacity duration-200', !p.available && 'opacity-60')}>
-                <div className="relative">
-                  <ProductImage name={p.name} image={p.image} tint={p.tint} className="aspect-[4/3] w-full" />
+              <Card
+                key={p.id}
+                className={cx('group flex flex-col gap-0 overflow-hidden p-0 transition-[transform,opacity,box-shadow] duration-[var(--duration-base)] ease-[var(--ease-out)] hover:-translate-y-1 hover:shadow-float animate-rise', !p.available && 'opacity-60')}
+                style={{ animationDelay: `${i * 40}ms` }}
+              >
+                <div className="relative overflow-hidden">
+                  <ProductImage name={p.name} image={p.image} tint={p.tint} className="aspect-[4/3] w-full transition-transform duration-300 ease-[var(--ease-out)] group-hover:scale-105" />
                   <span className="absolute top-3 left-3">
                     {out ? <Badge tone="danger">{p.stock === 0 ? 'Sold out' : 'Hidden'}</Badge> : p.stock <= 5 ? <Badge tone="lime">Low stock</Badge> : null}
                   </span>

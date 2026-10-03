@@ -42,6 +42,18 @@ function Orders() {
     <>
       <PageHead title="Orders" sub="Every order from chat, WhatsApp and Instagram, from cart to doorstep." />
 
+      {/* The pipeline at a glance: each stage's share of orders */}
+      <div className="glass-card mb-3 flex h-3 overflow-hidden rounded-pill p-0.5">
+        {STATUSES.map((st, i) => (
+          <span
+            key={st}
+            className={cx('grow-x h-full rounded-pill first:rounded-l-pill', ['bg-[#d9d9e0]', 'bg-lime-2', 'bg-lime-3', 'bg-ink'][i])}
+            style={{ width: `${(count(st) / Math.max(1, orders.length)) * 100}%`, animationDelay: `${i * 120}ms` }}
+            title={`${STATUS_LABEL[st]}: ${count(st)}`}
+          />
+        ))}
+      </div>
+
       {/* Pipeline summary doubles as the filter */}
       <div className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-5">
         {(['all', ...STATUSES] as const).map((s) => (
@@ -50,8 +62,8 @@ function Orders() {
             type="button"
             onClick={() => setTab(s)}
             className={cx(
-              'flex items-center justify-between rounded-[20px] px-4 py-3 text-left transition-colors duration-[var(--duration-fast)]',
-              tab === s ? 'bg-ink text-white' : 'bg-white/70 hover:bg-white',
+              'flex items-center justify-between rounded-[20px] px-4 py-3 text-left transition-[transform,background-color,color] duration-[var(--duration-base)] ease-[var(--ease-out)] active:scale-[0.97]',
+              tab === s ? 'bg-ink text-white shadow-float' : 'glass-card hover:-translate-y-0.5',
               s === 'all' && 'col-span-2 sm:col-span-1',
             )}
           >
@@ -69,7 +81,7 @@ function Orders() {
           <ul>
             {shown.map((o, i) => (
               <li key={o.id}>
-                <button type="button" onClick={() => setOpenId(o.id)} className={cx('flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-mist/60', i > 0 && 'border-t border-line/70')}>
+                <button type="button" onClick={() => setOpenId(o.id)} className={cx('flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-white/50 animate-rise', i > 0 && 'border-t border-ink/5')} style={{ animationDelay: `${i * 40}ms` }}>
                   <span className="min-w-0 flex-1">
                     <span className="flex items-center gap-2">
                       <span className="font-mono text-[13px]">{o.id}</span>

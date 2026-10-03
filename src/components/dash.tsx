@@ -5,6 +5,8 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState, type ReactNode } from 'react'
 import { business } from '@/lib/mock'
 import { cx } from '@/lib/format'
+import { LivePulse } from './fx'
+import { Aurora } from './hero'
 import { Icon, type IconName } from './icons'
 import { Logo } from './ui'
 
@@ -72,21 +74,31 @@ export function DashboardShell({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className="min-h-dvh lg:grid lg:grid-cols-[248px_1fr]">
+    <div className="relative isolate min-h-dvh lg:grid lg:grid-cols-[248px_1fr]">
+      {/* Colour behind the glass */}
+      <div className="fixed inset-0 -z-10 bg-[#efefec]">
+        <Aurora fade={false} intensity={0.85} />
+      </div>
       {/* Sidebar (desktop) */}
       <aside className="sticky top-0 hidden h-dvh flex-col gap-1 p-3 lg:flex">
-        <div className="glass flex h-full flex-col rounded-[28px] p-3">
+        <div className="glass-strong flex h-full flex-col rounded-[28px] p-3">
           <Link href="/" className="px-3 pt-2 pb-5" aria-label="Mira home">
             <Logo />
           </Link>
-          <nav className="flex flex-col gap-0.5" aria-label="Dashboard">
+          <nav className="relative flex flex-col gap-0.5" aria-label="Dashboard">
+            {/* The active pill slides between items */}
+            <span
+              aria-hidden="true"
+              className="absolute inset-x-0 top-0 h-10 rounded-pill bg-ink shadow-[0_8px_20px_-10px_rgb(17_17_18/0.7)] transition-transform duration-[260ms] ease-[var(--ease-out)]"
+              style={{ transform: `translateY(${Math.max(0, NAV.findIndex((n) => active(n.href))) * 42}px)` }}
+            />
             {NAV.map((n) => (
               <Link
                 key={n.href}
                 href={n.href}
                 className={cx(
-                  'flex h-10 items-center gap-3 rounded-pill px-3.5 text-[14px] transition-colors duration-[var(--duration-fast)]',
-                  active(n.href) ? 'bg-ink text-white' : 'text-ink-2 hover:bg-white/80 hover:text-ink',
+                  'relative flex h-10 items-center gap-3 rounded-pill px-3.5 text-[14px] transition-colors duration-[var(--duration-base)]',
+                  active(n.href) ? 'text-white' : 'text-ink-2 hover:bg-white/60 hover:text-ink',
                 )}
               >
                 <Icon name={n.icon} />
@@ -95,7 +107,8 @@ export function DashboardShell({ children }: { children: ReactNode }) {
               </Link>
             ))}
           </nav>
-          <div className="mt-auto rounded-[20px] bg-lime p-4">
+          <div className="relative mt-auto overflow-hidden rounded-[20px] bg-[linear-gradient(140deg,#f4f9cf,#e5f186)] p-4">
+            <LivePulse className="absolute -top-3 -right-3 size-14 opacity-90" />
             <p className="text-[13px] font-medium">Free trial</p>
             <p className="mt-1 text-xs leading-snug text-ink-2">Your assistant is live. ₦50,000/month when the trial ends.</p>
           </div>
@@ -108,7 +121,7 @@ export function DashboardShell({ children }: { children: ReactNode }) {
       <div className="flex min-w-0 flex-col">
         {/* Top bar */}
         <header className="sticky top-0 z-30 flex items-center gap-3 px-4 pt-3 pb-2 sm:px-6 lg:pt-5">
-          <div className="glass flex h-14 w-full items-center gap-3 rounded-pill pr-2 pl-4">
+          <div className="glass-strong flex h-14 w-full items-center gap-3 rounded-pill pr-2 pl-4">
             <Link href="/dashboard" className="lg:hidden" aria-label="Overview">
               <Logo wordmark={false} />
             </Link>
@@ -117,7 +130,11 @@ export function DashboardShell({ children }: { children: ReactNode }) {
               <p className="truncate text-xs text-muted">{NAV.find((n) => active(n.href))?.label ?? 'Dashboard'}</p>
             </div>
             <Link href="/" className="hidden h-9 items-center gap-1.5 rounded-pill bg-white/70 px-3.5 text-[13px] text-ink-2 transition-colors hover:bg-white sm:flex">
-              <span className="size-1.5 rounded-full bg-lime-3" /> Assistant live
+              <span className="relative flex size-2">
+                <span className="absolute inset-0 animate-ping rounded-full bg-lime-3 opacity-70" />
+                <span className="relative size-2 rounded-full bg-lime-3" />
+              </span>
+              Assistant live
             </Link>
             <span className="grid size-10 place-items-center rounded-full bg-ink text-sm font-medium text-white" aria-hidden="true">
               {owner.slice(0, 1).toUpperCase()}
@@ -133,7 +150,7 @@ export function DashboardShell({ children }: { children: ReactNode }) {
       </div>
 
       {/* Bottom tabs (phones) */}
-      <nav className="glass fixed inset-x-3 bottom-3 z-40 grid h-16 grid-cols-5 rounded-[24px] px-1 shadow-float lg:hidden" aria-label="Dashboard">
+      <nav className="glass-strong fixed inset-x-3 bottom-3 z-40 grid h-16 grid-cols-5 rounded-[24px] px-1 lg:hidden" aria-label="Dashboard">
         {TABS.map((href) => {
           const n = NAV.find((x) => x.href === href)!
           return (
@@ -156,7 +173,7 @@ export function DashboardShell({ children }: { children: ReactNode }) {
       {more && (
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-label="More">
           <button type="button" className="absolute inset-0 bg-ink/20 animate-fade" onClick={() => setMore(false)} aria-label="Close" />
-          <div className="glass absolute inset-x-3 bottom-3 rounded-[28px] p-3 shadow-float animate-pop">
+          <div className="glass-strong absolute inset-x-3 bottom-3 rounded-[28px] p-3 animate-pop">
             <div className="grid grid-cols-3 gap-2">
               {NAV.filter((n) => !TABS.includes(n.href)).map((n) => (
                 <Link key={n.href} href={n.href} className={cx('flex flex-col items-center gap-2 rounded-[20px] py-4 text-[13px]', active(n.href) ? 'bg-ink text-white' : 'bg-white/70')}>
@@ -189,7 +206,7 @@ export function PageHead({ title, sub, action }: { title: string; sub?: string; 
 
 /** Skeleton block for loading states. */
 export function Skeleton({ className }: { className?: string }) {
-  return <div className={cx('animate-pulse rounded-card bg-white/70', className)} />
+  return <div className={cx('animate-pulse rounded-card bg-white/50', className)} />
 }
 
 export function Saved({ show }: { show: boolean }) {
@@ -205,7 +222,7 @@ export function Sheet({ title, onClose, children }: { title: string; onClose: ()
   return (
     <div className="fixed inset-0 z-50" role="dialog" aria-label={title}>
       <button type="button" className="absolute inset-0 bg-ink/20 animate-fade" onClick={onClose} aria-label="Close" />
-      <div className="glass absolute inset-x-2 bottom-2 max-h-[88dvh] overflow-y-auto rounded-[28px] p-6 shadow-float animate-pop sm:inset-y-3 sm:right-3 sm:left-auto sm:max-h-none sm:w-[440px]">
+      <div className="glass-strong absolute inset-x-2 bottom-2 max-h-[88dvh] overflow-y-auto rounded-[28px] p-6 shadow-float animate-pop sm:inset-y-3 sm:right-3 sm:left-auto sm:max-h-none sm:w-[440px]">
         <div className="mb-5 flex items-center justify-between">
           <p className="text-lg font-medium">{title}</p>
           <button type="button" onClick={onClose} className="grid size-9 place-items-center rounded-full bg-white/80" aria-label="Close">

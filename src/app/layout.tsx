@@ -4,8 +4,8 @@ import { GeistSans } from 'geist/font/sans'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Mira — AI customer service for your business',
-  description: 'A 24/7 AI assistant on your website that answers only from your own catalog, policies and orders — plus order tracking and insights. ₦50,000/month.',
+  title: 'Mira — customer service for your business, day and night',
+  description: 'A 24/7 assistant on your website that answers only from your own catalog, policies and orders — plus order tracking and insights. ₦50,000/month.',
   metadataBase: new URL('https://miraapp.com.ng'),
 }
 

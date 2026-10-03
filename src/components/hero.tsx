@@ -204,12 +204,8 @@ export function Hero() {
       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-surface" />
 
       <div className="relative mx-auto flex max-w-[1100px] flex-col items-center px-5 text-center">
-        <span className="glass inline-flex h-9 items-center gap-2 rounded-pill pr-4 pl-1.5 text-[13px] text-ink-2 animate-rise">
-          <span className="rounded-pill bg-ink px-2.5 py-1 text-[11px] font-medium text-white">New</span>
-          AI customer service, built for Nigerian businesses
-        </span>
 
-        <h1 className="mt-7 text-[clamp(46px,8.6vw,112px)] leading-[0.98] font-medium tracking-[-0.045em] text-balance">
+        <h1 className="mt-4 text-[clamp(46px,8.6vw,112px)] leading-[0.98] font-medium tracking-[-0.045em] text-balance">
           {WORDS.map((w, i) =>
             w === '#icons' ? (
               <span key={w} className="mr-[0.22em] inline-flex translate-y-[0.06em] gap-[0.1em] align-baseline animate-pop" style={{ animationDelay: `${120 + i * 55}ms` }}>
@@ -231,7 +227,7 @@ export function Hero() {
         </h1>
 
         <p className="mt-6 max-w-[560px] text-[17px] leading-relaxed text-ink-2 animate-rise sm:text-[19px]" style={{ animationDelay: '420ms' }}>
-          Mira puts an AI assistant on your website that answers from your own catalog, prices, policies and orders — then hands you the insights.
+          Mira puts a 24/7 assistant on your website that answers from your own catalog, prices, policies and orders — then hands you the insights.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5 animate-rise" style={{ animationDelay: '480ms' }}>
           <Button size="lg" href="/signup" icon="arrow">
@@ -257,7 +253,7 @@ export function Hero() {
             <div className="flex items-center gap-3 pr-2">
               <MiniRing value={0.96} />
               <span className="text-left text-[12px] leading-tight text-ink-2">
-                <span className="block text-[14px] font-medium text-ink">Answered by AI</span>
+                <span className="block text-[14px] font-medium text-ink">Answered automatically</span>
                 last 14 days
               </span>
             </div>

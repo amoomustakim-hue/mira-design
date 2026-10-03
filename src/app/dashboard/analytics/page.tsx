@@ -1,6 +1,7 @@
 'use client'
 
 import { Bar } from '@/components/charts'
+import { CountUp, Gauge } from '@/components/fx'
 import { PageHead, Skeleton, useLoad } from '@/components/dash'
 import { Icon } from '@/components/icons'
 import { Badge, Card, ProductImage } from '@/components/ui'
@@ -35,8 +36,35 @@ export default function AnalyticsPage() {
     <>
       <PageHead title="Insights" sub="What customers ask, complain about and want — from every conversation." />
 
+      <div className="mb-4 grid gap-3 sm:grid-cols-3 sm:gap-4">
+        <Card className="flex items-center gap-4 animate-rise">
+          <Gauge value={0.96} size={96} />
+          <span className="text-[13px] leading-snug text-ink-2">
+            <span className="block text-[15px] font-medium text-ink">Answered automatically</span>
+            The rest were handed to you.
+          </span>
+        </Card>
+        <Card className="flex flex-col justify-between gap-3 animate-rise" style={{ animationDelay: '60ms' }}>
+          <span className="text-[13px] text-muted">Questions turned into orders</span>
+          <span className="text-[34px] leading-none font-medium tracking-tight tabular-nums">
+            <CountUp value={11.4} format={(n) => `${n.toFixed(1)}%`} />
+          </span>
+          <Bar value={11.4} max={20} tone="ink" delay={200} />
+        </Card>
+        <Card className="flex flex-col justify-between gap-3 animate-rise" style={{ animationDelay: '120ms' }}>
+          <span className="text-[13px] text-muted">Complaints this fortnight</span>
+          <span className="flex items-end gap-2">
+            <span className="text-[34px] leading-none font-medium tracking-tight tabular-nums">
+              <CountUp value={ins.complaints.reduce((a, c) => a + c.count, 0)} />
+            </span>
+            <Badge tone="lime">−9% vs before</Badge>
+          </span>
+          <Bar value={52} max={100} tone="mist" delay={260} />
+        </Card>
+      </div>
+
       {missed.map((d) => (
-        <div key={d.productId} className="mb-4 flex items-center gap-3 rounded-card bg-lime p-4 pr-5">
+        <div key={d.productId} className="glass-lime mb-4 flex items-center gap-3 rounded-card p-4 pr-5 animate-rise">
           <span className="grid size-10 shrink-0 place-items-center rounded-full bg-surface">
             <Icon name="bolt" />
           </span>
@@ -60,7 +88,7 @@ export default function AnalyticsPage() {
                   </span>
                   <span className="tabular-nums text-ink-2">{q.count}</span>
                 </span>
-                <Bar value={q.count} max={maxQ} tone={i === 0 ? 'ink' : 'lime'} />
+                <Bar value={q.count} max={maxQ} tone={i === 0 ? 'ink' : 'lime'} delay={150 + i * 70} />
               </li>
             ))}
           </ol>
@@ -79,7 +107,7 @@ export default function AnalyticsPage() {
                     <Badge tone={c.change > 0 ? 'danger' : 'lime'}>{pct(c.change, true)}</Badge>
                   </span>
                 </span>
-                <Bar value={c.count} max={maxC} tone="mist" />
+                <Bar value={c.count} max={maxC} tone="mist" delay={150} />
               </li>
             ))}
           </ul>
@@ -90,8 +118,8 @@ export default function AnalyticsPage() {
           <p className="text-[13px] text-muted">How often each product comes up in chat, and how often it sells.</p>
           <div className="mt-5 grid gap-6 md:grid-cols-2">
             {[
-              { title: 'Hot right now', items: hot, tone: 'bg-lime' },
-              { title: 'Least demanded', items: cold, tone: 'bg-mist' },
+              { title: 'Hot right now', items: hot, tone: 'glass-lime' },
+              { title: 'Least demanded', items: cold, tone: 'bg-white/45' },
             ].map((col) => (
               <div key={col.title} className={cx('rounded-[22px] p-4', col.tone)}>
                 <p className="mb-3 flex items-center gap-2 text-[13px] font-medium">
@@ -101,7 +129,7 @@ export default function AnalyticsPage() {
                   {col.items.map((d) => {
                     const p = product(d.productId)
                     return (
-                      <li key={d.productId} className="flex items-center gap-3 rounded-[16px] bg-surface p-2.5 pr-4">
+                      <li key={d.productId} className="flex items-center gap-3 rounded-[16px] bg-white/75 p-2.5 pr-4 transition-transform duration-[var(--duration-base)] hover:-translate-y-0.5">
                         {p && <ProductImage name={p.name} image={p.image} tint={p.tint} className="size-11 rounded-[12px]" />}
                         <span className="min-w-0 flex-1 truncate text-[14px]">{p?.name}</span>
                         <span className="text-right text-xs leading-tight text-muted">

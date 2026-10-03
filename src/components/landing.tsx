@@ -129,7 +129,7 @@ export function Industries() {
   return (
     <section id="industries" className="scroll-mt-24 overflow-hidden py-16 lg:py-24">
       <div className="mx-auto flex max-w-[1240px] flex-wrap items-start justify-between gap-6 px-5 text-[13px] sm:px-8">
-        <span>AI powered</span>
+        <span>Always on</span>
         <span className="flex items-start gap-2">
           <span className="mt-1.5 size-1.5 rounded-full bg-ink" />
           Answers from your own data,
@@ -264,7 +264,7 @@ function FeatureInsights() {
 }
 
 const FEATURES = [
-  { chip: 'AI chat assistant', title: 'Answers in seconds, from your own data', body: 'Prices, sizes, stock, delivery fees, opening hours. Mira only says what your business has told it — and passes anything else to you.', tone: 'glass-lime', visual: <FeatureChat /> },
+  { chip: 'Chat assistant', title: 'Answers in seconds, from your own data', body: 'Prices, sizes, stock, delivery fees, opening hours. Mira only says what your business has told it — and passes anything else to you.', tone: 'glass-lime', visual: <FeatureChat /> },
   { chip: 'Product catalog', title: 'Prices and stock, always current', body: 'Add products once. Flip availability from your phone and the assistant stops offering what you’ve sold out of.', tone: 'glass-strong', visual: <FeatureCatalog /> },
   { chip: 'Order management', title: 'From cart to doorstep, in one list', body: 'Every order moves cart → placed → shipped → delivered, and customers can ask the assistant where theirs is.', tone: 'glass-lime', visual: <FeatureOrders /> },
   { chip: 'Insights dashboard', title: 'Know what customers really want', body: 'See recurring complaints, the questions asked most, and which products are hot — or sitting still.', tone: 'glass-strong', visual: <FeatureInsights /> },
@@ -363,7 +363,7 @@ export function Steps() {
 /* ---------- Pricing ---------- */
 
 const INCLUDED = [
-  '24/7 AI chat assistant on your website',
+  '24/7 chat assistant on your website',
   'Product catalog with prices and stock',
   'Order tracking: cart → placed → shipped → delivered',
   'Insights: complaints, top questions, hot and slow products',

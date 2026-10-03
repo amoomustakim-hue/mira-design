@@ -201,8 +201,8 @@ export default function DesignNotes() {
             <StatusBadge status="delivered" />
           </div>
           <div className="grid max-w-[520px] grid-cols-2 gap-3">
-            <Stat label="Chat queries" value="1,284" delta={0.18} />
-            <Stat label="Orders" value="146" delta={-0.04} />
+            <Stat label="Chat queries" value={1284} delta={0.18} spark={[62, 71, 58, 80, 77, 92, 88, 95, 84, 101, 97, 110, 104, 121]} />
+            <Stat label="Orders" value={146} delta={-0.04} />
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-[14px]">

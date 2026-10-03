@@ -11,7 +11,7 @@ type Knowledge = {
 }
 
 /**
- * DEMO ONLY — a keyword matcher standing in for the real AI so the widget can
+ * DEMO ONLY — a keyword matcher standing in for the real assistant so the widget can
  * be tried. Like the real assistant, it only ever answers from the business's
  * own data, and says so when it can't.
  */
