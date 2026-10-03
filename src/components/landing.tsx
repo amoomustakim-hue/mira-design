@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { cx, naira } from '@/lib/format'
 import { Aurora, InlineIcon } from './hero'
 import { Icon } from './icons'
@@ -271,6 +271,36 @@ const FEATURES = [
 ]
 
 export function Features() {
+  const cards = useRef<(HTMLElement | null)[]>([])
+
+  // As the next card slides over, the one beneath sinks back a little.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let raf = 0
+    const update = () => {
+      raf = 0
+      const els = cards.current
+      els.forEach((el, i) => {
+        const next = els[i + 1]
+        if (!el || !next) return
+        const a = el.getBoundingClientRect()
+        const b = next.getBoundingClientRect()
+        const p = Math.min(1, Math.max(0, (a.bottom - b.top) / a.height))
+        el.style.transform = `scale(${1 - p * 0.06})`
+        el.style.filter = p > 0 ? `brightness(${1 - p * 0.08})` : ''
+      })
+    }
+    const onScroll = () => (raf ||= requestAnimationFrame(update))
+    update()
+    addEventListener('scroll', onScroll, { passive: true })
+    addEventListener('resize', onScroll)
+    return () => {
+      cancelAnimationFrame(raf)
+      removeEventListener('scroll', onScroll)
+      removeEventListener('resize', onScroll)
+    }
+  }, [])
+
   return (
     <section id="features" className="relative isolate scroll-mt-24 py-10 lg:py-16">
       <Aurora className="-z-10" />
@@ -286,13 +316,19 @@ export function Features() {
         {FEATURES.map((f, i) => (
           <article
             key={f.chip}
-            className={cx('grid items-center gap-8 rounded-panel px-6 py-10 sm:px-12 lg:sticky lg:min-h-[420px] lg:grid-cols-2 lg:py-12', f.tone)}
-            style={{ top: `${88 + i * 18}px` }}
+            ref={(el) => {
+              cards.current[i] = el
+            }}
+            className={cx(
+              'sticky top-[calc(76px+var(--i)*12px)] grid origin-top items-center gap-6 rounded-[32px] px-5 py-7 will-change-transform sm:top-[calc(88px+var(--i)*18px)] sm:gap-8 sm:rounded-panel sm:px-12 sm:py-10 lg:min-h-[420px] lg:grid-cols-2 lg:py-12',
+              f.tone,
+            )}
+            style={{ ['--i' as string]: i }}
           >
-            <div className="flex flex-col items-start gap-5">
+            <div className="flex flex-col items-start gap-4 sm:gap-5">
               <Chip>{f.chip}</Chip>
-              <h3 className="max-w-[420px] text-[28px] leading-[1.1] font-medium tracking-[-0.025em] sm:text-[36px]">{f.title}</h3>
-              <p className="max-w-[400px] text-[15px] leading-relaxed text-ink-2">{f.body}</p>
+              <h3 className="max-w-[420px] text-[25px] leading-[1.1] font-medium tracking-[-0.025em] sm:text-[36px]">{f.title}</h3>
+              <p className="max-w-[400px] text-[14px] leading-relaxed text-ink-2 sm:text-[15px]">{f.body}</p>
             </div>
             <div className="flex justify-center lg:justify-end">{f.visual}</div>
           </article>
